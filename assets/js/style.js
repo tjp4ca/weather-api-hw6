@@ -66,27 +66,27 @@ function getWeather() {
 
             var newTemp = document.createElement("p");
             var newWind = document.createElement("p");
+            var newHumid = document.createElement("p");
+            var newImg = document.createElement("img");
 
 
             newTemp.textContent = "Temp: " + data.list[i].main.temp + " F"
             newWind.textContent = "Wind: " + data.list[i].wind.speed + " MPH"
-            
-            
-            
+            newHumid.textContent = "Humidity: " + data.list[i].main.humidity + "%"
+            newImg.src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png"
+
+                     
+
             newTestContainer.append(newTemp);
             newTestContainer.append(newWind);
-
+            newTestContainer.append(newHumid);
+            newTestContainer.append(newImg);
 
         }
 
 
-
-        // temp.textContent = data.list[0].main.temp + " F"
-        // wind.textContent = data.list[0].wind.speed + " MPH"
-        // humidity.textContent = data.list[0].main.humidity + "%"
         
-        // var icon = data.list[0].weather[0].icon
-        // weatherImg.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+       
     })
 
     console.log(city.value);
