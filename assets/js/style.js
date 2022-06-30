@@ -1,20 +1,11 @@
 var searchButton = document.getElementById("searchBtn")
-
 var city = document.querySelector("#citySearch")
 
 var apiKey = "6afe51d5612df9b7d231871fe756c85b"
 
-// key = 6afe51d5612df9b7d231871fe756c85b
-// &units=imperial
-//https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-//https://api.openweathermap.org/data/2.5/weather?q=London&appid={API key}
-
-
-
 var temp = document.querySelector(".todayTemp");
 var wind = document.querySelector(".todayWind");
 var humidity = document.querySelector(".todayHumidity");
-
 
 var weatherImg = document.getElementById("weatherImg");
 
@@ -45,11 +36,9 @@ var weatherImg = document.getElementById("weatherImg");
 
 
 
-
-
-
 var dateBox = document.querySelector(".dateBox");
 var weatherBox = document.querySelector(".weatherBox");
+
 
 
 function getWeather() {
@@ -88,13 +77,10 @@ function getWeather() {
 
             newContainer.classList.add("col-2");
 
-            newImg.src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png"
-            
-            newTemp.textContent = "Temp: " + data.list[i].main.temp + " F"
-            
-            newWind.textContent = "Wind: " + data.list[i].wind.speed + " MPH"
-            
-            newHumid.textContent = "Humidity: " + data.list[i].main.humidity + "%"
+            newImg.src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
+            newTemp.textContent = "Temp: " + data.list[i].main.temp + " F";
+            newWind.textContent = "Wind: " + data.list[i].wind.speed + " MPH";
+            newHumid.textContent = "Humidity: " + data.list[i].main.humidity + "%";
             
 
             // Print texts and images
@@ -114,6 +100,17 @@ function getWeather() {
     
     weatherBox.textContent = "";
     dateBox.textContent = "";
+
+
+
+    var newBtnContainer = document.getElementById("storageBtn")
+
+    var newBtn = document.createElement("button")
+
+    localStorage.setItem("cityName" , city.value);
+    newBtn.textContent = localStorage.getItem("cityName");
+    newBtnContainer.append(newBtn)
+
 }
 
 searchButton.addEventListener("click", getWeather);
@@ -126,14 +123,7 @@ searchButton.addEventListener("click", getWeather);
 
 
 
-
-
-
-
-
-
-
-
+// not working APIs
 
 
 // function getWeather() {
