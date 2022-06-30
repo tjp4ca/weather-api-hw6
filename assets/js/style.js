@@ -48,8 +48,8 @@ var weatherImg = document.getElementById("weatherImg");
 
 
 
-
-var newTestContainer = document.getElementById("newTest");
+var dateBox = document.querySelector(".dateBox");
+var weatherBox = document.querySelector(".weatherBox");
 
 
 function getWeather() {
@@ -60,39 +60,60 @@ function getWeather() {
     })
     .then(function(data) {
         console.log(data)
+        
+        // Date for loop
+        for (var i = 0;  i < 6; i++) {
+            var newDate2 = document.createElement("p");
 
+            newDate2.textContent = moment().add(i, "days").format("MM-D-YYYY");
+            newDate2.classList.add("col-2");
 
+            dateBox.append(newDate2);
+        }
+
+        // Weather for loop
         for (var i = 0;  i < data.list.length; i+=7) {
-
+            // Create a new element
+            // var newDate = document.createElement("p");
+            var newImg = document.createElement("img");
             var newTemp = document.createElement("p");
             var newWind = document.createElement("p");
             var newHumid = document.createElement("p");
-            var newImg = document.createElement("img");
+
+            var newContainer = document.createElement("div");
+
+            // Change texts and images
+            // newDate.textContent = data.list[i].dt_txt
 
 
-            newTemp.textContent = "Temp: " + data.list[i].main.temp + " F"
-            newWind.textContent = "Wind: " + data.list[i].wind.speed + " MPH"
-            newHumid.textContent = "Humidity: " + data.list[i].main.humidity + "%"
+            newContainer.classList.add("col-2");
+
             newImg.src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png"
+            
+            newTemp.textContent = "Temp: " + data.list[i].main.temp + " F"
+            
+            newWind.textContent = "Wind: " + data.list[i].wind.speed + " MPH"
+            
+            newHumid.textContent = "Humidity: " + data.list[i].main.humidity + "%"
+            
 
-                     
-
-            newTestContainer.append(newTemp);
-            newTestContainer.append(newWind);
-            newTestContainer.append(newHumid);
-            newTestContainer.append(newImg);
-
+            // Print texts and images
+            // weatherBox.append(newDate);
+            weatherBox.append(newContainer);
+            newContainer.append(newImg);
+            newContainer.append(newTemp);
+            newContainer.append(newWind);
+            newContainer.append(newHumid);
         }
-
-
-        
        
     })
 
     console.log(city.value);
 
-
     console.log("clicked");
+    
+    weatherBox.textContent = "";
+    dateBox.textContent = "";
 }
 
 searchButton.addEventListener("click", getWeather);
@@ -157,5 +178,6 @@ searchButton.addEventListener("click", getWeather);
 // searchButton.addEventListener("click", getWeather);
 
 
-
+// newDate1 = data.list[i].dt_txt.split(" ")[0]
+// newDate.textContent = newDate1
 
